@@ -24,7 +24,7 @@ docker run  \
 -p $NB_PORT:$NB_PORT \
 --name notebook \
 -v $HOME/docker_home:/home/jovyan \
-jupyter/datascience-notebook \
+$USER:jupyter \
 start-notebook.sh \
 --port $NB_PORT \
 $NB_PASSWORD_OPTION
