@@ -1,6 +1,12 @@
 #!/bin/sh
 DIRNAME=`dirname $0`
 
+EX_OPT=""
+
+if [ -n "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
+  EX_OPT="$EX_OPT -v $GOOGLE_APPLICATION_CREDENTIALS:/opt/creds -e GOOGLE_APPLICATION_CREDENTIALS=/opt/creds"
+fi
+
 if [ ! -d $HOME/docker_home/work ];then
   mkdir -p $HOME/docker_home/work
 fi
@@ -18,6 +24,7 @@ NB_PORT=18888
 docker run  \
 -u $UID \
 --rm \
+$EX_OPT \
 -v /dev/bus/usb:/dev/bus/usb \
 -v /media:/media \
 -e TZ=Asia/Tokyo \
